@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on My New Hugo Site</title>
+    <link>http://localhost:1313/en/posts/</link>
+    <description>Recent content in Posts on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 06 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/en/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Transactions</title>
+      <link>http://localhost:1313/en/posts/transactions/</link>
+      <pubDate>Sun, 06 Apr 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/en/posts/transactions/</guid>
+      
+      <description>&lt;p&gt;This chapter explores how &lt;strong&gt;database systems&lt;/strong&gt; manage &lt;strong&gt;concurrency&lt;/strong&gt; and &lt;strong&gt;failures&lt;/strong&gt; to provide guarantees of &lt;strong&gt;atomicity&lt;/strong&gt;, &lt;strong&gt;isolation&lt;/strong&gt;, &lt;strong&gt;durability&lt;/strong&gt;, and ultimately &lt;strong&gt;serializability&lt;/strong&gt;, at the cost of various &lt;strong&gt;performance&lt;/strong&gt; and &lt;strong&gt;availability&lt;/strong&gt; trade‑offs.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;the-slippery-concept-of-a-transaction&#34;&gt;The Slippery Concept of a Transaction&lt;/h3&gt;
+&lt;p&gt;A &lt;strong&gt;transaction&lt;/strong&gt; groups several reads and writes into an atomic unit: either all succeed (&lt;em&gt;commit&lt;/em&gt;) or none (&lt;em&gt;abort&lt;/em&gt;) :contentReference[oaicite:0]{index=0}.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Simplifies error handling: just retry on abort.&lt;/li&gt;
+&lt;li&gt;Not every application needs them; sometimes guarantees are traded for &lt;strong&gt;performance&lt;/strong&gt; or &lt;strong&gt;availability&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;the-meaning-of-acid&#34;&gt;The Meaning of ACID&lt;/h3&gt;
+&lt;p&gt;ACID defines the safety guarantees of transactions:&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>
