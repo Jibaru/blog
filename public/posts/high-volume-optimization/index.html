@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title itemprop="name"> | My New Hugo Site</title>
+<meta property="og:title" content=" | My New Hugo Site" />
+<meta name="twitter:title" content=" | My New Hugo Site" />
+<meta itemprop="name" content=" | My New Hugo Site" />
+<meta name="application-name" content=" | My New Hugo Site" />
+<meta property="og:site_name" content="Awesome hugo blog" />
+
+<meta name="description" content="Minimal Hugo blog theme with light and dark mode support">
+<meta itemprop="description" content="Minimal Hugo blog theme with light and dark mode support" />
+<meta property="og:description" content="Minimal Hugo blog theme with light and dark mode support" />
+<meta name="twitter:description" content="Minimal Hugo blog theme with light and dark mode support" />
+
+<meta property="og:locale" content="en" />
+<meta name="language" content="en" />
+
+  <link rel="alternate" hreflang="en" href="http://localhost:1313/posts/high-volume-optimization/" title="English" />
+
+
+
+
+
+    
+    
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:article:published_time" content=0001-01-01T00:00:00Z />
+    <meta property="article:published_time" content=0001-01-01T00:00:00Z />
+    <meta property="og:url" content="http://localhost:1313/posts/high-volume-optimization/" />
+
+    
+    <meta property="og:article:author" content="Jibaru" />
+    <meta property="article:author" content="Jibaru" />
+    <meta name="author" content="Jibaru" />
+    
+    
+
+    
+
+    <script defer type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "headline": "",
+        "author": {
+        "@type": "Person",
+        "name": ""
+        },
+        "datePublished": "0001-01-01",
+        "description": "",
+        "wordCount":  2123 ,
+        "mainEntityOfPage": "True",
+        "dateModified": "0001-01-01",
+        "image": {
+        "@type": "imageObject",
+        "url": ""
+        },
+        "publisher": {
+        "@type": "Organization",
+        "name": "My New Hugo Site"
+        }
+    }
+    </script>
+
+
+<meta name="generator" content="Hugo 0.145.0">
+
+    
+    <meta property="og:url" content="http://localhost:1313/posts/high-volume-optimization/">
+  <meta property="og:site_name" content="My New Hugo Site">
+  <meta property="og:title" content="My New Hugo Site">
+  <meta property="og:description" content="Desenredando la Maraña: Optimizando un Flujo de Procesamiento de Datos de Alto Volumen En el desarrollo de sistemas distribuidos, las complejidades a menudo se manifiestan en producción de maneras inesperadas. Recientemente, nos enfrentamos a un desafío significativo en nuestra plataforma: un sistema diseñado para procesar conteos de dispositivos físicos exhibía una latencia inaceptable, múltiples timeouts y, lo que era más crítico, una serie recurrente de deadlocks en la base de datos. Este post detalla el problema, nuestros enfoques iniciales y la solución final que nos permitió escalar eficientemente.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+
+
+    
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="My New Hugo Site">
+  <meta name="twitter:description" content="Desenredando la Maraña: Optimizando un Flujo de Procesamiento de Datos de Alto Volumen En el desarrollo de sistemas distribuidos, las complejidades a menudo se manifiestan en producción de maneras inesperadas. Recientemente, nos enfrentamos a un desafío significativo en nuestra plataforma: un sistema diseñado para procesar conteos de dispositivos físicos exhibía una latencia inaceptable, múltiples timeouts y, lo que era más crítico, una serie recurrente de deadlocks en la base de datos. Este post detalla el problema, nuestros enfoques iniciales y la solución final que nos permitió escalar eficientemente.">
+
+
+    
+
+    <link rel="canonical" href="http://localhost:1313/posts/high-volume-optimization/">
+    <link href="/style.min.2d921c18cf1ec555ffc03d59a8adc211c402c68c930c27d6a0c306ab175a8d09.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="http://localhost:1313/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    
+</head>
+<body data-theme = "dark" class="notransition">
+
+<script src="/js/theme.js"></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="http://localhost:1313/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title></title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Home
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link active" href="/posts/">
+                        Posts
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/pages/about/">
+                        About
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
+            </ul>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title"></h1>
+                
+                
+            </header>
+            
+    
+    <details class="toc" ZgotmplZ>
+        <summary><b></b></summary>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#desenredando-la-maraña-optimizando-un-flujo-de-procesamiento-de-datos-de-alto-volumen">Desenredando la Maraña: Optimizando un Flujo de Procesamiento de Datos de Alto Volumen</a>
+      <ul>
+        <li><a href="#el-escenario-original-un-flujo-de-datos-crítico">El Escenario Original: Un Flujo de Datos Crítico</a></li>
+        <li><a href="#los-síntomas-de-la-alarma-en-producción">Los Síntomas de la Alarma en Producción</a></li>
+        <li><a href="#desentrañando-el-principal-culpable-los-deadlocks">Desentrañando el Principal Culpable: Los Deadlocks</a>
+          <ul>
+            <li><a href="#la-raíz-del-problema-operaciones-concurrentes-en-la-base-de-datos">La Raíz del Problema: Operaciones Concurrentes en la Base de Datos</a></li>
+            <li><a href="#primer-intento-de-solución-simplificación-y-batching">Primer Intento de Solución: Simplificación y Batching</a></li>
+            <li><a href="#segundo-intento-eliminando-transacciones-explícitas-y-utilizando-merge">Segundo Intento: Eliminando Transacciones Explícitas y Utilizando <code>MERGE</code></a></li>
+            <li><a href="#la-solución-definitiva-desacoplamiento-y-serialización-con-kinesis-partition-keys">La Solución Definitiva: Desacoplamiento y Serialización con Kinesis Partition Keys</a></li>
+          </ul>
+        </li>
+        <li><a href="#abordando-los-timeouts-en-las-llamadas-a-apis">Abordando los Timeouts en las Llamadas a APIs</a>
+          <ul>
+            <li><a href="#estrategias-de-optimización-para-apis">Estrategias de Optimización para APIs:</a></li>
+          </ul>
+        </li>
+        <li><a href="#conclusiones-de-la-crisis-a-la-escalabilidad">Conclusiones: De la Crisis a la Escalabilidad</a></li>
+        <li><a href="#lecciones-aprendidas-y-siguientes-pasos">Lecciones Aprendidas y Siguientes Pasos</a>
+          <ul>
+            <li><a href="#1-gestión-de-particiones-en-kinesis-y-el-problema-de-los-hot-shards">1. Gestión de Particiones en Kinesis y el Problema de los &ldquo;Hot Shards&rdquo;</a></li>
+            <li><a href="#2-la-proliferación-de-clientes-http-y-la-oportunidad-del-circuit-breaker">2. La Proliferación de Clientes HTTP y la Oportunidad del Circuit Breaker</a></li>
+            <li><a href="#3-deuda-técnica-y-la-necesidad-de-un-cambio-de-mentalidad">3. Deuda Técnica y la Necesidad de un Cambio de Mentalidad</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </details>
+            <div class="page-content">
+                <h2 id="desenredando-la-maraña-optimizando-un-flujo-de-procesamiento-de-datos-de-alto-volumen">Desenredando la Maraña: Optimizando un Flujo de Procesamiento de Datos de Alto Volumen</h2>
+<p>En el desarrollo de sistemas distribuidos, las complejidades a menudo se manifiestan en producción de maneras inesperadas. Recientemente, nos enfrentamos a un desafío significativo en nuestra plataforma: un sistema diseñado para procesar conteos de dispositivos físicos exhibía una latencia inaceptable, múltiples timeouts y, lo que era más crítico, una serie recurrente de deadlocks en la base de datos. Este post detalla el problema, nuestros enfoques iniciales y la solución final que nos permitió escalar eficientemente.</p>
+<h3 id="el-escenario-original-un-flujo-de-datos-crítico">El Escenario Original: Un Flujo de Datos Crítico</h3>
+<p>Nuestro sistema se encarga de leer conteos de dispositivos físicos. Estos datos son procesados a través de varios microservicios antes de ser enviados a un <strong>stream de AWS Kinesis</strong>. Posteriormente, una <strong>AWS Lambda</strong> consume estos eventos de Kinesis, realiza llamadas a diversas APIs internas y externas, construye filas estructuradas y finalmente las persiste en una <strong>base de datos relacional SQL</strong>.</p>
+<pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">graph LR
+    A[Dispositivos Físicos] --&gt; B(Microservicios de Procesamiento);
+    B --&gt; C(AWS Kinesis Stream - Entrada);
+    C --&gt; D(AWS Lambda - Procesador Inicial);
+    D --&gt; E(APIs Externas/Internas);
+    E --&gt; D;
+    D --&gt; F[Construcción de Filas];
+    F --&gt; G(Base de Datos Relacional SQL);
+</code></pre><p><em>Diagrama 1: Flujo de Datos Original</em></p>
+<h3 id="los-síntomas-de-la-alarma-en-producción">Los Síntomas de la Alarma en Producción</h3>
+<p>Los problemas que comenzamos a observar eran claros y perjudiciales:</p>
+<ol>
+<li><strong>Latencia Excesiva:</strong> Datos que tardaban horas en ser procesados, comprometiendo la frescura de la información.</li>
+<li><strong>Timeouts Constantes:</strong> La Lambda procesadora, con un límite de ejecución de 30 segundos, frecuentemente excedía este umbral durante las llamadas a APIs, la construcción de filas o las operaciones de base de datos.</li>
+<li><strong>Deadlocks Recurrentes:</strong> Este era el síntoma más preocupante, indicando una contención severa en la base de datos que paralizaba el procesamiento.</li>
+</ol>
+<h3 id="desentrañando-el-principal-culpable-los-deadlocks">Desentrañando el Principal Culpable: Los Deadlocks</h3>
+<p>Decidimos abordar los deadlocks como prioridad máxima, ya que su resolución impactaría directamente en la estabilidad y la latencia general del sistema.</p>
+<h4 id="la-raíz-del-problema-operaciones-concurrentes-en-la-base-de-datos">La Raíz del Problema: Operaciones Concurrentes en la Base de Datos</h4>
+<p>Nuestra estrategia original para guardar, eliminar o actualizar filas en la base de datos se centraba en transacciones. La lógica era, en esencia, la siguiente:</p>
+<ul>
+<li><strong>Enfoque Pre-existente:</strong>
+<ol>
+<li>Abrir una transacción.</li>
+<li>Seleccionar las filas involucradas.</li>
+<li>Si una fila existe, actualizarla; de lo contrario, insertarla.</li>
+<li>Para eliminaciones, una lógica similar.</li>
+</ol>
+</li>
+</ul>
+<p>Esta operación se realizaba a veces de forma individual (fila por fila) y otras veces en lotes (<code>bulk</code>). Ambas variantes generaban un alto número de &ldquo;round trips&rdquo; a la base de datos, consumiendo tiempo y recursos.</p>
+<h4 id="primer-intento-de-solución-simplificación-y-batching">Primer Intento de Solución: Simplificación y Batching</h4>
+<p>Nuestra primera hipótesis fue que la complejidad de la lógica de &ldquo;seleccionar y luego insertar/actualizar&rdquo; contribuía a los deadlocks. Propusimos una operación más simple y eficiente:</p>
+<ul>
+<li><strong>Estrategia:</strong>
+<ol>
+<li>Eliminar todas las filas relacionadas (si existen o no, eliminarlas de forma condicional).</li>
+<li>Insertar todas las nuevas filas en un solo lote (<code>batch</code>).</li>
+<li>Todo dentro de una única transacción.</li>
+<li>Si el lote era muy grande, dividirlo en &ldquo;chunks&rdquo; más pequeños.</li>
+</ol>
+</li>
+</ul>
+<!-- end list -->
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+participant &#34;Lambda Procesadora&#34; as Lambda
+participant &#34;Base de Datos SQL&#34; as DB
+
+Lambda -&gt; DB: Iniciar Transacción
+Lambda -&gt; DB: DELETE FROM Tabla WHERE ... (en batch)
+Lambda -&gt; DB: INSERT INTO Tabla VALUES (...) (en batch, chunks si es grande)
+Lambda -&gt; DB: COMMIT / ROLLBACK Transacción
+@enduml
+</code></pre><p><em>Diagrama 2: Primer Intento de Optimización en BD</em></p>
+<ul>
+<li><strong>Resultado:</strong> Aunque la lógica parecía más limpia, los deadlocks y timeouts persistían. Las transacciones no cerradas debido a los timeouts dejaban bloqueos activos, creando un <strong>efecto dominó</strong> de procesos en espera y nuevos timeouts.</li>
+</ul>
+<h4 id="segundo-intento-eliminando-transacciones-explícitas-y-utilizando-merge">Segundo Intento: Eliminando Transacciones Explícitas y Utilizando <code>MERGE</code></h4>
+<p>Ante la persistencia del problema, consideramos que la gestión explícita de transacciones y los múltiples <code>round trips</code> seguían siendo la causa.</p>
+<ul>
+<li>
+<p><strong>Estrategia:</strong></p>
+<ol>
+<li>Eliminar las transacciones explícitas.</li>
+<li>Aprovechar funcionalidades del motor de base de datos como <code>ON CONFLICT</code> (si disponible) o <code>MERGE</code> (como en nuestro caso) para realizar operaciones de &ldquo;insertar o actualizar&rdquo; en una sola consulta. Esto reduce la necesidad de múltiples <code>SELECT</code> antes de <code>INSERT/UPDATE</code>.</li>
+<li>Mantener el procesamiento en pequeños lotes (<code>chunks</code>).</li>
+</ol>
+</li>
+<li>
+<p><strong>Resultado:</strong> Hubo una <strong>disminución notable en la frecuencia de deadlocks y timeouts</strong>, lo que indicaba que estábamos en el camino correcto. Sin embargo, no se eliminaron por completo. Cada consulta <code>MERGE</code> seguía implicando una transacción interna a nivel de motor de base de datos, y la concurrencia en las mismas filas aún podía generar contención, aunque menos frecuente.</p>
+</li>
+</ul>
+<h4 id="la-solución-definitiva-desacoplamiento-y-serialización-con-kinesis-partition-keys">La Solución Definitiva: Desacoplamiento y Serialización con Kinesis Partition Keys</h4>
+<p>Fue en este punto donde realizamos un <code>brainstorming</code> y concebimos una solución radicalmente diferente, inspirada en patrones de sistemas distribuidos y aprovechando las capacidades de AWS Kinesis.</p>
+<p>La idea central era <strong>garantizar que las operaciones sobre una misma entidad (fila de base de datos con una clave única) nunca se procesaran concurrentemente</strong>. Para lograr esto, rediseñamos el flujo:</p>
+<ol>
+<li>
+<p><strong>Separación de Responsabilidades:</strong></p>
+<ul>
+<li>La <strong>Lambda original (Procesadora)</strong> se encargaría únicamente de consumir el Kinesis de entrada, invocar APIs y <strong>generar las filas de datos finales</strong>.</li>
+<li>Estas filas generadas no se insertarían directamente en la base de datos, sino que se enviarían a un <strong>segundo stream de Kinesis</strong>.</li>
+</ul>
+</li>
+<li>
+<p><strong>El &ldquo;Persister&rdquo; y Kinesis Partition Keys:</strong></p>
+<ul>
+<li>Una <strong>nueva Lambda (Persister)</strong> sería la única responsable de consumir del segundo Kinesis y <strong>persistir los datos en la base de datos</strong>.</li>
+<li><strong>Crucialmente, al enviar las filas al segundo Kinesis, utilizamos la clave única de cada fila como <code>Partition Key</code> del evento de Kinesis.</strong> Kinesis garantiza que todos los eventos con la misma <code>Partition Key</code> son entregados a la misma &ldquo;shard&rdquo; y, por lo tanto, procesados por la misma instancia de la Lambda Persister, y en el orden en que fueron recibidos.</li>
+</ul>
+</li>
+</ol>
+<!-- end list -->
+<pre tabindex="0"><code class="language-plantuml" data-lang="plantuml">@startuml
+participant &#34;AWS Kinesis Stream (Entrada)&#34; as KinesisIn
+participant &#34;Lambda Procesadora (Go)&#34; as LambdaProc
+participant &#34;APIs Externas/Internas&#34; as APIs
+participant &#34;AWS Kinesis Stream (Persistencia)&#34; as KinesisOut
+participant &#34;Lambda Persister (Go)&#34; as LambdaPersist
+participant &#34;Base de Datos Relacional SQL&#34; as DB
+
+KinesisIn --&gt; LambdaProc: Eventos de conteo
+LambdaProc --&gt; APIs: Llamadas
+APIs --&gt; LambdaProc: Respuestas
+LambdaProc --&gt; KinesisOut: Filas a Persistir (usando Partition Key = Clave Única de Fila)
+KinesisOut --&gt; LambdaPersist: Eventos de Fila (garantiza orden y concurrencia por Partition Key)
+LambdaPersist --&gt; DB: INSERT/UPDATE (en batch, solo la última versión)
+@enduml
+</code></pre><p><em>Diagrama 3: Arquitectura Optimizada con Doble Kinesis y Partition Keys</em></p>
+<p>Este enfoque nos permitió:</p>
+<ul>
+<li>
+<p><strong>Eliminar Contención:</strong> Al serializar las operaciones por <code>Partition Key</code>, dos instancias de la Lambda Persister nunca intentarían modificar la misma fila en la base de datos al mismo tiempo. ¡<strong>Adiós a los deadlocks</strong>!</p>
+</li>
+<li>
+<p><strong>Optimización de Batching:</strong> La Lambda Persister podía procesar lotes más grandes. Si dentro de un batch recibía múltiples eventos para la misma <code>Partition Key</code> (es decir, la misma fila se actualizó varias veces), simplemente tomaba la <strong>versión más reciente</strong>, reduciendo la cantidad efectiva de operaciones de <code>INSERT/UPDATE</code> en la base de datos.</p>
+</li>
+<li>
+<p><strong>Mayor Paralelismo:</strong> Descubrimos que teníamos una distribución ineficiente de <code>Partition Keys</code> en otros lugares, con solo unas pocas claves dominantes. Al usar claves únicas de fila, logramos una distribución mucho más granular, lo que permitió a Kinesis distribuir la carga de manera efectiva entre muchas más shards y, por ende, a nuestra Lambda Persister escalar horizontalmente de manera más eficiente.</p>
+</li>
+<li>
+<p><strong>Resultado:</strong> ¡Un éxito rotundo! Los deadlocks desaparecieron por completo. El procesamiento de filas se volvió predecible y rápido. Pudimos aumentar el <code>batch size</code> y el factor de paralelización, garantizando el orden por entidad y mejorando drásticamente el rendimiento general del sistema.</p>
+</li>
+</ul>
+<h3 id="abordando-los-timeouts-en-las-llamadas-a-apis">Abordando los Timeouts en las Llamadas a APIs</h3>
+<p>Una vez resueltos los deadlocks, nos centramos en los recurrentes timeouts provocados por las llamadas a APIs, que seguían siendo un cuello de botella en la primera Lambda procesadora.</p>
+<h4 id="estrategias-de-optimización-para-apis">Estrategias de Optimización para APIs:</h4>
+<ol>
+<li>
+<p><strong>Reducción de la Redundancia (Cacheo en Memoria):</strong> Identificamos patrones donde se realizaban múltiples llamadas idénticas a la misma API dentro del procesamiento de un lote de eventos. Implementamos un mecanismo de cacheo simple en memoria para evitar repetir estas llamadas, lo que resultó en una reducción significativa de solicitudes de red.</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Antes</th>
+          <th style="text-align: left">Después</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">100 llamadas (50 únicas, 50 repetidas)</td>
+          <td style="text-align: left">50 llamadas (solo las únicas)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><em>Tabla 1: Comparativa de llamadas a API</em></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+</li>
+<li>
+<p><strong>Llamadas en Lote (Batch Endpoints):</strong> Colaboramos con los equipos de las APIs para que expusieran <code>endpoints</code> que aceptaran listas de identificadores o parámetros. Esto nos permitió hacer una sola llamada para obtener información de múltiples recursos, en lugar de una llamada individual por cada uno.</p>
+</li>
+<li>
+<p><strong>Concurrencia en Go:</strong> Aprovechando la facilidad de Go para manejar la concurrencia (goroutines), modificamos la lógica de llamadas a APIs para ejecutarlas en paralelo en lugar de secuencialmente. Esto redujo el tiempo de espera total, especialmente cuando se dependía de varias APIs.</p>
+</li>
+<li>
+<p><strong>Optimización de los Servicios Propietarios de las APIs:</strong> Durante la depuración, descubrimos que los propios servicios que exponían estas APIs también tenían problemas:</p>
+<ul>
+<li><strong>Cuellos de botella en conexiones:</strong> Agotamiento de <code>pools</code> de conexiones HTTP y de base de datos. Se optimizaron los límites de conexión.</li>
+<li><strong>Clientes HTTP ineficientes:</strong> Centralizamos y mejoramos la configuración de nuestros clientes HTTP.</li>
+<li><strong>Peticiones mal formadas:</strong> Se corrigieron algunas peticiones HTTP que eran ineficientes o incorrectas.</li>
+<li><strong>Visibilidad:</strong> Se mejoró el <code>logging</code> para facilitar la identificación de problemas.</li>
+</ul>
+</li>
+</ol>
+<!-- end list -->
+<ul>
+<li><strong>Resultado:</strong> Estas optimizaciones combinadas lograron <strong>disminuir considerablemente la ocurrencia de timeouts</strong>. Para los casos residuales donde un servicio de API podría caer temporalmente, confiamos en los mecanismos de <strong>reintentos nativos de Lambda</strong> y una <strong>Dead Letter Queue (DLQ)</strong> para asegurar que los eventos eventualmente se procesaran sin pérdida de datos.</li>
+</ul>
+<h3 id="conclusiones-de-la-crisis-a-la-escalabilidad">Conclusiones: De la Crisis a la Escalabilidad</h3>
+<p>La odisea desde los deadlocks recurrentes y la latencia extrema hasta un sistema estable y escalable fue una lección valiosa en ingeniería de sistemas distribuidos. La clave residió en:</p>
+<ul>
+<li><strong>Diagnóstico preciso:</strong> No asumir que el problema está donde el síntoma es más obvio.</li>
+<li><strong>Enfoque iterativo:</strong> Intentar soluciones pequeñas y medir su impacto.</li>
+<li><strong>Re-arquitectura audaz:</strong> No tener miedo de rediseñar componentes clave cuando las optimizaciones incrementales no son suficientes.</li>
+<li><strong>Aprovechar las fortalezas de la plataforma:</strong> El uso estratégico de Kinesis <code>Partition Keys</code> fue un game-changer para la serialización de operaciones críticas.</li>
+</ul>
+<p>Hoy, nuestro sistema no solo procesa los conteos de dispositivos de manera fiable y en tiempo real, sino que está preparado para escalar a volúmenes de datos mucho mayores, demostrando el poder de la arquitectura pensada y la optimización continua.</p>
+<hr>
+<h3 id="lecciones-aprendidas-y-siguientes-pasos">Lecciones Aprendidas y Siguientes Pasos</h3>
+<p>Si bien esta intervención fue un éxito para resolver los problemas críticos de producción, el proceso de diagnóstico e implementación sacó a la luz una serie de desafíos arquitectónicos y culturales más profundos. Estos representan nuestras próximas fronteras para la optimización y la madurez del sistema.</p>
+<h4 id="1-gestión-de-particiones-en-kinesis-y-el-problema-de-los-hot-shards">1. Gestión de Particiones en Kinesis y el Problema de los &ldquo;Hot Shards&rdquo;</h4>
+<p>Uno de nuestros descubrimientos clave fue el uso subóptimo de AWS Kinesis en varios servicios. Encontramos sistemas que utilizaban un número muy reducido de <code>Partition Keys</code> (a veces incluso una sola clave estática) para volúmenes de datos significativos.</p>
+<p>Esto genera &ldquo;hot shards&rdquo; (shards que reciben una cantidad desproporcionada de tráfico), anulando por completo los beneficios de paralelismo y escalabilidad que ofrece Kinesis. Un siguiente paso crucial es auditar nuestros flujos de datos y <strong>aplicar una estrategia de particionamiento granular y distribuida</strong> en toda la plataforma, similar a la que implementamos en nuestra solución, para garantizar una distribución de carga equitativa.</p>
+<h4 id="2-la-proliferación-de-clientes-http-y-la-oportunidad-del-circuit-breaker">2. La Proliferación de Clientes HTTP y la Oportunidad del Circuit Breaker</h4>
+<p>Notamos una tendencia preocupante: muchos servicios crean nuevas instancias de clientes HTTP de forma indiscriminada para cada llamada. Esta práctica no solo es ineficiente (no reutiliza conexiones), sino que hace que la gestión de la resiliencia sea casi imposible.</p>
+<p>La solución a corto plazo fue centralizar el uso de clientes, pero la oportunidad a largo plazo es mayor. Planeamos desarrollar un <strong>cliente HTTP centralizado y &ldquo;enriquecido&rdquo;</strong> que incorpore patrones de resiliencia de forma nativa. El más importante de ellos sería el patrón <strong>Circuit Breaker</strong>. Un Circuit Breaker detectaría cuándo un servicio dependiente está fallando (por ejemplo, devolviendo errores 5xx o timeouts) y &ldquo;abriría el circuito&rdquo;, dejando de enviarle tráfico por un breve período. Esto le daría al servicio caído un tiempo vital para recuperarse, en lugar de ser saturado por reintentos constantes, mejorando la estabilidad de todo el ecosistema.</p>
+<h4 id="3-deuda-técnica-y-la-necesidad-de-un-cambio-de-mentalidad">3. Deuda Técnica y la Necesidad de un Cambio de Mentalidad</h4>
+<p>Finalmente, este incidente expuso una cantidad considerable de <strong>deuda técnica</strong> acumulada. Más importante aún, reveló una brecha en nuestro enfoque de diseño: muchos componentes no se construyeron pensando en la escala de producción desde el primer día.</p>
+<p>La falta de <strong>pruebas de carga exhaustivas</strong> (simulando picos reales de producción) permitió que estos problemas crecieran silenciosamente. El siguiente paso no es solo técnico, sino cultural. Necesitamos fomentar un cambio de mentalidad en el equipo, priorizando la <strong>escalabilidad, la resiliencia y la observabilidad</strong> como requisitos no funcionales de primer nivel, y no como algo que se &ldquo;arregla&rdquo; después. Esto implica pensar en pruebas de carga, patrones de resiliencia y distribución de datos desde la concepción de cada nueva funcionalidad.</p>
+
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+<a href="https://github.com/Jibaru" target="_blank" rel="noopener noreferrer me"
+    title="Github">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+</a>
+<a href="https://twitter.com" target="_blank" rel="noopener noreferrer me"
+    title="Twitter">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+    </path>
+</svg>
+</a>
+<a href="/index.xml" target="_blank" rel="noopener noreferrer me"
+    title="Rss">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 11a9 9 0 0 1 9 9" />
+    <path d="M4 4a16 16 0 0 1 16 16" />
+    <circle cx="5" cy="19" r="1" />
+</svg>
+</a>
+</div>
+    <small class="footer_copyright">
+        © 2025 Jibaru.
+        
+    </small>
+</footer><a href="#" title="" id="totop">
+    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" stroke="currentColor" viewBox="0 96 960 960">
+    <path d="M283 704.739 234.261 656 480 410.261 725.739 656 677 704.739l-197-197-197 197Z"/>
+</svg>
+
+</a>
+
+
+    
+
+
+
+
+
+
+    
+    <script async src="http://localhost:1313/js/main.js" ></script>
+
+    
+
+</body>
+</html>

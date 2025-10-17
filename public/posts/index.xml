@@ -28,5 +28,17 @@
       
     </item>
     
+    <item>
+      <title></title>
+      <link>http://localhost:1313/posts/high-volume-optimization/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/high-volume-optimization/</guid>
+      
+      <description>&lt;h2 id=&#34;desenredando-la-maraña-optimizando-un-flujo-de-procesamiento-de-datos-de-alto-volumen&#34;&gt;Desenredando la Maraña: Optimizando un Flujo de Procesamiento de Datos de Alto Volumen&lt;/h2&gt;
+&lt;p&gt;En el desarrollo de sistemas distribuidos, las complejidades a menudo se manifiestan en producción de maneras inesperadas. Recientemente, nos enfrentamos a un desafío significativo en nuestra plataforma: un sistema diseñado para procesar conteos de dispositivos físicos exhibía una latencia inaceptable, múltiples timeouts y, lo que era más crítico, una serie recurrente de deadlocks en la base de datos. Este post detalla el problema, nuestros enfoques iniciales y la solución final que nos permitió escalar eficientemente.&lt;/p&gt;</description>
+      
+    </item>
+    
   </channel>
 </rss>
